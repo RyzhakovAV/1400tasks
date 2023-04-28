@@ -13,5 +13,6 @@ public class Task_2_01 {
         int findA = 3 * a * a + 5 * a - 21;
         System.out.printf("y = 17x^2 - 6x + 13, y = %d, при x = %d\n", findX, x);
         System.out.printf("y = 3a^2 + 5a - 21, y = %d, при a = %d", findA, a);
+
     }
 }
