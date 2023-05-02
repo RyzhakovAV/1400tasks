@@ -5,5 +5,8 @@ public class TestByte {
         byte b = 127;
         b++;
         System.out.println(b);
+        int a = 2;
+        int c = 2;
+        System.out.print(Math.pow(a + c, 3));
     }
 }
