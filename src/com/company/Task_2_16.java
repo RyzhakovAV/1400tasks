@@ -17,8 +17,9 @@ public class Task_2_16 {
             double a = Math.abs(Double.parseDouble(inputA));
             double b = Math.abs(Double.parseDouble(inputB));
             double S = ((a + b) / 2) * h;
-            System.out.println("Площадь равнобедренной трапеции равна " + S);
-
+            double P = a + b + 2 * Math.sqrt(Math.pow(h, 2) + Math.pow(a - b, 2) / 4);
+            System.out.printf("Площадь равнобедренной трапеции равна %.2f", S);
+            System.out.printf("\nПериметр равнобедренной трапеции равна %.2f", P);
         }catch (Exception e) {
             System.out.println("Ошибка ввода");
         }
