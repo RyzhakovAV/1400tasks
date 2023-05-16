@@ -1,10 +1,12 @@
 package com.company;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Boxes {
     static int[] arrayBoxes = new int[100];
     static int[] arrayPeople = new int[100];
+    static int[] arrayTime = new int[50];
     static Random rnd = new Random();
     static int sumFindOrder = 0;
     static int sumFindRandom = 0;
@@ -47,21 +49,43 @@ public class Boxes {
         return 0;
     }
 
-    public static int findBoxFirstRandom(int[] array, int man) {
-        int ticket = rnd.nextInt(0,100);;
+    public static int findBoxFirstRandom(int[] array, int[] time, int man) {
+        Arrays.fill(time, -1);
+        int ticket = rnd.nextInt(0,100);
+
         for(int i = 1; i < 50; i ++) {
-            if (man == array[ticket]) {
-                return 1;
-            }else{
-                ticket = array[ticket];
+            for(int j = 0; j < i; j++) {
+                if (ticket == time[j]) {
+                    ticket = rnd.nextInt(0, 100);
+                    j = 0;
+                } else {
+                    time[j] = ticket;
+                }
+                if (man == array[ticket]) {
+                    return 1;
+                } else {
+                    ticket = array[ticket];
+                }
             }
         }
         return 0;
     }
 
-    public static int findBoxRandom(int[] array, int man) {
-        for(int i = 0; i < 50; i ++) {
-            int ticket = rnd.nextInt(0,100);
+    public static int findBoxRandom(int[] array, int[] time, int man) {
+        Arrays.fill(time, -1);
+        int ticket = rnd.nextInt(0,100);
+        for(int i = 1; i < 50; i ++) {
+            for(int j = 0; j < i; j++) {
+                if(ticket == time[j]) {
+                    ticket = rnd.nextInt(0,100);
+                    j = 0;
+                }else{
+                    time[j] = ticket;
+                }
+
+            }
+            ticket = rnd.nextInt(0,100);
+
             if (man == array[ticket]) return 1;
         }
         return 0;
@@ -90,7 +114,7 @@ public class Boxes {
 
             sumFindRandom = 0;
             for(int j = 0; j < arrayPeople.length; j++) {
-                sumFindRandom += findBoxRandom(arrayBoxes, j);
+                sumFindRandom += findBoxRandom(arrayBoxes, arrayTime, j);
                 if(sumFindRandom == 100) {
                     resultRandom++;
                 }
@@ -103,7 +127,7 @@ public class Boxes {
 
             sumFirstRandom = 0;
             for(int j = 0; j < arrayPeople.length; j++) {
-                sumFirstRandom += findBoxFirstRandom(arrayBoxes, j);
+                sumFirstRandom += findBoxFirstRandom(arrayBoxes, arrayTime, j);
                 if(sumFirstRandom == 100) {
                     resultFirstRandom++;
                 }
