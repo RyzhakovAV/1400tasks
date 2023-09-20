@@ -1,4 +1,4 @@
-package com.company.oop1;
+package com.company.oop.oop1;
 
 public class Man {
     String name;
